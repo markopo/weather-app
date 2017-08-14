@@ -22,14 +22,15 @@ class WeatherVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     // tableview - bottom
     @IBOutlet weak var tableView: UITableView!
     
-    
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
         tableView.delegate = self
         tableView.dataSource = self
+        
+        print(CURRENT_WEATHER_URL)
         
     }
 
