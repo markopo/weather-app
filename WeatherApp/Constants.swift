@@ -17,7 +17,9 @@ let LATITUDE = "lat="
 let LONGITUDE = "&lon="
 */
 
-let CURRENT_WEATHER_URL = "http://api.openweathermap.org/data/2.5/forecast?APPID=\(API_KEY)&units=metric"
+let CURRENT_WEATHER_URL = "http://api.openweathermap.org/data/2.5/forecast?APPID=\(API_KEY)&units=metric&id=2689287"
 
 // APPID=a97bf8d818eacfc4abca512ced67b5ba&units=metric&id=2689287
 
+
+typealias DownloadComplete = () -> ()
