@@ -1,4 +1,4 @@
-//
+ //
 //  CurrentWeather.swift
 //  WeatherApp
 //
@@ -53,23 +53,27 @@ class CurrentWeather {
     }
     
     
-    func downloadWeatherDetails(completed: DownloadComplete) {
+    func downloadWeatherDetails(completed: @escaping DownloadComplete) {
         let currentWeatherURL = URL(string: CURRENT_WEATHER_URL)!
         
         Alamofire.request(currentWeatherURL).responseJSON { response in
             
-            if let jsonResult = response.result.value {
+            if let jsonResult = response.result.value as? Dictionary<String, AnyObject> {
                 
-               // print("JSON SHIT: ", jsonResult)
+                print("JSON SHIT: ", jsonResult)
                 
                 if let name = jsonResult["name"] as? String {
                     self._cityName = name
+                    
+                    print(self._cityName)
                 }
                 
                 if let weather = jsonResult["weather"] as? [Dictionary<String, AnyObject>] {
                     
                     if let main = weather[0]["main"] as? String {
                         self._weatherType = main
+                        
+                        print(self._weatherType)
                     }
                     
                 }
@@ -78,13 +82,16 @@ class CurrentWeather {
                     
                     if let temp = main["temp"] as? Double {
                         self._currentTemp = temp
+                        
+                        print(self._currentTemp)
                     }
                     
                 }
                 
             }
+            completed()
         }
-        completed()
+       
     }
     
     

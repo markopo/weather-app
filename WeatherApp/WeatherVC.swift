@@ -22,7 +22,7 @@ class WeatherVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     // tableview - bottom
     @IBOutlet weak var tableView: UITableView!
     
-    var currentWeather = CurrentWeather()
+    var currentWeather: CurrentWeather!
     
         
     override func viewDidLoad() {
@@ -34,14 +34,18 @@ class WeatherVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
         print(CURRENT_WEATHER_URL)
         
+        currentWeather = CurrentWeather()
+  
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        
         currentWeather.downloadWeatherDetails {
-            
-            print("DOWNLOADED RAIN FOR 40 DAYS AND NIGHTS!!")
-            
+            self.updateMainUI()
         }
         
-        
     }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -62,6 +66,18 @@ class WeatherVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "weatherCell", for: indexPath)
         return cell
     
+    }
+    
+    func updateMainUI() {
+        dateLabel.text = currentWeather.date
+        currentTempLabel.text = isPlusCelsius(temp: currentWeather.currentTemp) + "\(currentWeather.currentTemp)°C"
+        currentWeatherLabel.text = currentWeather.weatherType
+        locationLabel.text = currentWeather.cityName
+        currentWeatherImage.image = UIImage(named: currentWeather.weatherType)
+    }
+    
+    func isPlusCelsius(temp:Double) -> String {
+        return currentWeather.currentTemp >= 0 ? "+" : "-"
     }
 
 
