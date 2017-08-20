@@ -10,14 +10,16 @@ import Foundation
 
 
 let API_KEY = "a97bf8d818eacfc4abca512ced67b5ba"
+let BASE_URL = "http://api.openweathermap.org/data/2.5/weather?"
+let LATITUDE = "lat=57.7069"
+let LONGITUDE = "lon=11.9689"
 
-/**
-let BASE_URL = "http://api.openweathermap.org/data/2.5/forecast?"
-let LATITUDE = "lat="
-let LONGITUDE = "&lon="
-*/
 
-let CURRENT_WEATHER_URL = "http://api.openweathermap.org/data/2.5/forecast?APPID=\(API_KEY)&units=metric&id=2689287"
+let CURRENT_WEATHER_URL = "http://api.openweathermap.org/data/2.5/weather?APPID=\(API_KEY)&units=metric&lat=57.7069&lon=11.9689"
+
+let LOCATION_WEATHER_URL = "http://api.openweathermap.org/data/2.5/weather?APPID=\(API_KEY)&units=metric&id=2689287"
+
+
 
 // APPID=a97bf8d818eacfc4abca512ced67b5ba&units=metric&id=2689287
 

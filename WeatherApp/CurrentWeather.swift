@@ -9,7 +9,6 @@
 import UIKit
 import Alamofire
 
-
 class CurrentWeather {
     
     var _cityName:String!
@@ -61,7 +60,27 @@ class CurrentWeather {
             
             if let jsonResult = response.result.value {
                 
-                print("JSON SHIT: ", jsonResult)
+               // print("JSON SHIT: ", jsonResult)
+                
+                if let name = jsonResult["name"] as? String {
+                    self._cityName = name
+                }
+                
+                if let weather = jsonResult["weather"] as? [Dictionary<String, AnyObject>] {
+                    
+                    if let main = weather[0]["main"] as? String {
+                        self._weatherType = main
+                    }
+                    
+                }
+                
+                if let main = jsonResult["main"] as? Dictionary<String, AnyObject> {
+                    
+                    if let temp = main["temp"] as? Double {
+                        self._currentTemp = temp
+                    }
+                    
+                }
                 
             }
         }
