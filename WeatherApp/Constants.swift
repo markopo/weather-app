@@ -17,7 +17,9 @@ let LONGITUDE = "lon=11.9689"
 
 let CURRENT_WEATHER_URL = "http://api.openweathermap.org/data/2.5/weather?APPID=\(API_KEY)&units=metric&lat=57.7069&lon=11.9689"
 
-let LOCATION_WEATHER_URL = "http://api.openweathermap.org/data/2.5/weather?APPID=\(API_KEY)&units=metric&id=2689287"
+let FORECAST_WEATHER_URL = "http://api.openweathermap.org/data/2.5/forecast/daily?lat=57.7069&lon=11.9689&appid=42a1771a0b787bf12e734ada0cfc80cb&units=metric"
+
+// let LOCATION_WEATHER_URL = "http://api.openweathermap.org/data/2.5/weather?APPID=\(API_KEY)&units=metric&id=2689287"
 
 
 
