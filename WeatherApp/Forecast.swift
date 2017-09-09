@@ -12,6 +12,7 @@ import Alamofire
 class Forecast {
     
     var _date:String!
+    var _shortDate:String!
     var _weatherType:String!
     var _highTemp:String!
     var _lowTemp:String!
@@ -23,6 +24,14 @@ class Forecast {
         }
         
         return _date
+    }
+    
+    var shortDate: String {
+        if _shortDate == nil {
+            _shortDate = ""
+        }
+        
+        return _shortDate
     }
     
     var weatherType: String {
@@ -76,11 +85,21 @@ class Forecast {
         if let date = weatherDict["dt"] as? Double {
             
             let unixConvertedDate = Date(timeIntervalSince1970: date)
+            
             let dateFormatter = DateFormatter()
-            dateFormatter.dateStyle = .full
-            dateFormatter.dateFormat = "EEEE"
+            dateFormatter.dateStyle = .short
+          //  dateFormatter.dateFormat = "yyyy-MM-dd"
             dateFormatter.timeStyle = .none
-            self._date = unixConvertedDate.dayOfTheWeek()
+            
+            let dateString = dateFormatter.string(from: unixConvertedDate)
+            self._shortDate = dateString
+                
+            print("DATE: " + dateString)
+            
+            
+            
+            let day = unixConvertedDate.dayOfTheWeek()
+            self._date = "\(day)"
             
         }
         
