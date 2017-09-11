@@ -18,13 +18,15 @@ class WeatherCell: UITableViewCell {
     @IBOutlet weak var shortDateLbl: UILabel!
     
     func configureCell(forecast: Forecast){
-        lowTemp.text = "+\(forecast.lowTemp)°C"
-        highTemp.text = "+\(forecast.highTemp)°C"
+        lowTemp.text = "\(forecast.lowTemp)"
+        highTemp.text = "\(forecast.highTemp)"
         weatherType.text = forecast.weatherType
         weatherIcon.image = UIImage(named: forecast.weatherType)
         dayLabel.text = forecast.date
         shortDateLbl.text = forecast.shortDate
     }
+    
+    
     
     
     override func awakeFromNib() {

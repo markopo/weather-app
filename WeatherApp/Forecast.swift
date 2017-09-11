@@ -64,11 +64,25 @@ class Forecast {
         if let temp = weatherDict["temp"] as? Dictionary<String, AnyObject> {
             
             if let min = temp["min"] as? Double {
-                _lowTemp = "\(min)"
+                
+                if min > 0 {
+                    _lowTemp = "+\(min)°C"
+                }
+                else {
+                    _lowTemp = "-\(min)°C"
+                }
             }
             
             if let max = temp["max"] as? Double {
-                _highTemp = "\(max)"
+                
+                if max > 0 {
+                    _highTemp = "+\(max)°C"
+
+                }
+                else {
+                    _highTemp = "-\(max)°C"
+                }
+                
             }
         }
         
@@ -88,16 +102,11 @@ class Forecast {
             
             let dateFormatter = DateFormatter()
             dateFormatter.dateStyle = .short
-          //  dateFormatter.dateFormat = "yyyy-MM-dd"
             dateFormatter.timeStyle = .none
             
             let dateString = dateFormatter.string(from: unixConvertedDate)
             self._shortDate = dateString
-                
-            print("DATE: " + dateString)
-            
-            
-            
+  
             let day = unixConvertedDate.dayOfTheWeek()
             self._date = "\(day)"
             
